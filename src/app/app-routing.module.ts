@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate:[authGuard]
   },
   {
-    path: 'admin/blogPost',
+    path: '',
     component: BlogPostListComponent,
     canActivate:[authGuard]
   },
