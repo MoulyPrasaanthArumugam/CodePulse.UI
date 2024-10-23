@@ -50,6 +50,11 @@ const routes: Routes = [
     canActivate:[authGuard]
   },
   {
+    path: 'admin/blogpost',
+    component: AddBlogPostComponent,
+    canActivate:[authGuard]
+  },
+  {
     path: 'admin/blogpost/:id',
     component: EditBlogpostComponent,
     canActivate:[authGuard]
