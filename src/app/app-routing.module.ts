@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: BlogPostListComponent,
+    component: BlogDetailsComponent,
     canActivate:[authGuard]
   },
   {
@@ -51,7 +51,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/blogpost',
-    component: AddBlogPostComponent,
+    component: BlogPostListComponent,
     canActivate:[authGuard]
   },
   {
