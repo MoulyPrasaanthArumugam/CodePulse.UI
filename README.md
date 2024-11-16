@@ -1,27 +1,98 @@
-# CodePulse
+# HTTPclientmodule will be used to interact with API
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+addCategory(model:addCategoryRequest) : Observable<void>
+model:addCategoryRequest - Input parameter (input is a model of type addCategoryRequest )
+Observable<void> -Return Type
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+ private addSubscription ?: Subscription //We create a subscription type to handle the subscriptions
+ 
+this.addSubscription = this.categoryService.addCategory(this.model) //assigning subscription to addsubscription type
+    .subscribe({
+      next:(response)=>{
+        this.router.navigateByUrl('/admin/categories');
+      },
+ngOnDestroy(): void {
+    this.addSubscription?.unsubscribe();  //Unsubscribing 
+  }
+  
+ 
+export class AddCategoryComponent implements OnDestroy{  //Ondestroy hook act as a interface so we need to implement
 
-## Code scaffolding.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Environments:
+To store api base url constants for different environments
+ command: ng g environment
+ 
 
-## Build
+# Async Pipe:
+It autmatically subscribes an observable and update the template with emitted value. Used only for display purpose not required to bind or modify
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<ng-container *ngIf="categories$ | async as categories"> // using async pipe to subscribe an observable here categories is a temp variable
+categories$?:Observable<Category[]>; //here $ is notation for array of observables
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Routing in TS:
+we need to include router in constructor part
+  constructor(private categoryService: CategoryService, private router:Router) {
+this.addSubscription = this.categoryService.addCategory(this.model)
+    .subscribe({
+      next:(response)=>{
+        this.router.navigateByUrl('/admin/categories');
+      },  //If there is success response it will be routed
+	  
+	  
+Logic to Fetch details by passing parameter
+<a class="btn btn-light" [routerLink]="['/admin/categories',category.id]">Edit</a>  //Passing parameter in router link
+constructor( private route:ActivatedRoute)  //Use Activated route to capture parameter by route
 
-## Running end-to-end tests
+ ngOnInit(): void {
+    this.paramSubscription = this.route.paramMap.subscribe({
+      next:(params) => {
+        this.id = params.get('id');  //Capturing the route parameter
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+        if(this.id){
+          //get the data from API for this Category ID
+          this.categoryService.getCategoryByID(this.id). //Using it to filter 
+          subscribe({
+            next:(response) =>{
+              this.category = response;
+            }
+          })
+        }
+      }
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# we can right if else like this
+<ng-container *ngIf="category;else notfound">
+
+<ng-template #notfound>  //here not found is used as template id to show alert
+<div class="alert alert-warning" role="alert">
+Category not found
+</div>
+</ng-template >
+
+# Markdown:
+It is done by ngx-markdown package
+<markdown [data]="model.content"></markdown> //Used two way binding to display the markdown content
+
+# Image Upload:
+# Reusable component
+ <div class="images-container-modal" [ngClass]="{'d-block': isImageSelectorVisible, 'd-none': !isImageSelectorVisible}">  // Used isImageSelectorVisible to show and hide popup
+    <button type="button" class="btn btn-light" style="position: fixed; top: 10px;right: 10px" (click)="closeImageSelector()">X</button>
+  <app-image-selector></app-image-selector>  
+
+Uploading image in API
+public async Task<IActionResult> UploadImage([FromForm] IFormFile file,
+    [FromForm] string fileName, [FromForm] string title)   //we use FromForm attribute to recieve details from form IFromFile is a file type
+                
+ModelState.AddModelError("file", "Unsupported file format"); //used for validation
+
+
+# @viewchild 
+ @ViewChild('form', { static: false}) imageUploadForm?: NgForm;  // it is createad as a variable to reset form
+ 
+ 
+# BehaviourSubject
+   Used to create observables to emit values to its subscribers
+Because BehaviorSubject always holds the latest value, it is often used in state management scenarios. For example, you can use it to store and update the state of a component or service, ensuring that all parts of your application have access to the most recent state3.
