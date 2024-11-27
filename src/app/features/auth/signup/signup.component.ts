@@ -24,25 +24,19 @@ export class SignupComponent{
 
   
 
-  onSubmit()
+  onSubmit():any
   { 
+    this.authService.register(this.modellist).subscribe({
+      next: (response) => {
+        console.log('Registration successful:', response);
+        alert('User registered successfully!');
+      },
+      error: (error) => {
+        console.error('Error during registration:', error);
+        alert('Registration failed! Please try again.');
+      }
+    });
 
-    this.authService.register(this.modellist)
-    // .subscribe({
-    //   next: (response) => {
-    //     // Set Auth Cookie
-    //     this.cookieService.set('Authorization', `Bearer ${response.token}`,
-    //     undefined, '/', undefined, true, 'Strict');
-
-    //     // Set User
-    //     this.authService.setUser({
-    //       email: response.email,
-    //       roles: response.roles
-    //     });
-
-       
-
-    
     console.log('Userlist:',  this.modellist); 
     this.router.navigateByUrl('/login');
   }

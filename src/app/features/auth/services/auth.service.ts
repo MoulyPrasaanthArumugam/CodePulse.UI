@@ -59,8 +59,8 @@ export class AuthService {
   }
 
 
-  register(request: SignupRequest):void {
-     this.http.post<SignupRequest>(`${environment.apiBaseUrl}/api/auth/register`, {
+  register(request: SignupRequest):Observable<any> {
+     return this.http.post<SignupRequest>(`${environment.apiBaseUrl}/api/auth/register`, {
       UserName:request.UserName,
       Email: request.Email,
       Password: request.Password
