@@ -42,7 +42,7 @@ constructor(private categoryService:CategoryService) {
     this.categories$ = this.categoryService.getAllCategories(query);
   }
   sort(sortBy: string, sortDirection: string) {
-    this.categories$ = this.categoryService.getAllCategories(undefined, sortBy, sortDirection);
+    this.categories$ = this.categoryService.getAllCategories(undefined, sortBy, sortDirection,this.pageNumber,this.pageSize);
   }
 
   getPage(pageNumber: number) {

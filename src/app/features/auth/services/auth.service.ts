@@ -6,6 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { SignupRequest } from '../models/Signup_request_Model';
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +56,14 @@ export class AuthService {
     localStorage.clear();
     this.cookieService.delete('Authorization', '/');
     this.$user.next(undefined);
+  }
+
+
+  register(request: SignupRequest):void {
+     this.http.post<SignupRequest>(`${environment.apiBaseUrl}/api/auth/register`, {
+      UserName:request.UserName,
+      Email: request.Email,
+      Password: request.Password
+    });
   }
 }
