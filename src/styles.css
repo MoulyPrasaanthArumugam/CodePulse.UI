@@ -1,16 +1,107 @@
 /* You can add global styles to this file, and also import other style files */
-.images-container-modal {
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    padding: 50px;
-    background-color: rgba(0,0,0,0.5);
-  }
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-  .blog-content img {
-    max-width: 100%;
-    margin: 2em 0 2em 0;
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Fixed header at the top */
+.fixed-header {
+  position: fixed; /* Keeps the header fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100% !important; /* Full width of the viewport */
+  z-index: 1000; /* Ensures it stays above other elements */
+  background: unset !important;
+}
+
+/* Toolbar in the login container */
+.login-header {
+  background-color: transparent;
+  box-shadow: none;
+  margin-bottom: 16px;
+}
+
+.netflix-logo {
+  height: 90px; /* Adjust height to your preference */
+  transition: none; /* Prevent unintended transitions */
+  display: block; 
+}
+
+.font-w500 {
+  font-weight: 500;
+}
+
+.dropdown-item {
+  cursor: pointer; /* Ensures the cursor is a pointer (hand) */
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa; /* Optional: Highlight on hover */
+  cursor: pointer; /* Explicitly setting pointer cursor */
+}
+
+
+.btn-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: firebrick;
+  --bs-btn-border-color: #dc3545;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #bb2d3b;
+  --bs-btn-hover-border-color: #b02a37;
+  --bs-btn-focus-shadow-rgb: 225, 83, 97;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #b02a37;
+  --bs-btn-active-border-color: #a52834;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #dc3545;
+  --bs-btn-disabled-border-color: #dc3545;
+}
+
+.browsediv {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Avoid image repetition */
+}
+
+
+.mdc-dialog__surface {
+  background-color: white !important;
+  padding: 5%;
+}
+
+/* Change the background color of only snack bars with the custom class */
+.custom-snack-bar {
+  background-color: #ff4081; /* Example: Pink background */
+  color: white; /* Text color */
+  font-weight: bold; /* Optional: bold text */
+}
+
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: #e90000 !important;
+  border-radius: unset !important;
+}
+
+.signupbtn {
+  border-radius: 30px;
+}
+
+
+@media only screen and (max-width: 770px) {
+  .signupbtn {
+    margin: auto !important;
   }
+}
+

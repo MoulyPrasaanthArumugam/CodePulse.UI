@@ -1,51 +1,105 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Code Blogs</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <ng-container *ngIf="user !== undefined && user?.roles?.includes('Writer')">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Admin
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" [routerLink]="['/admin/categories']">Categories</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" [routerLink]="['admin/blogpost']">BlogPosts</a></li>
-                <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-              </ul>
-            </li>
-          </ng-container>
-             
-        </ul>
+<mat-toolbar [ngClass]="{'fixed-header_scroll': isScrolled}" class="fixed-header d-flex justify-content-between align-items-center">
+  <img src="../../../assets/netflixlogo.png" class="netflix-logo" alt="Logo" />
+  <div class="d-flex align-items-center">
+    <mat-toolbar class="fixed-header d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <!-- Logo -->
+        <img src="../../../assets/netflixlogo.png" class="netflix-logo me-4" alt="Logo" />
 
-        <div class="d-flex">
-          <ng-container *ngIf="user === undefined;else showLogout">
-            <!-- Show Login Button -->
-            <a [routerLink]="['/login']" class="btn btn-primary">Login</a>
-  
-          </ng-container>
-          <ng-template #showLogout>
-            <div class="d-flex align-items-center">
-              <span>{{user?.email}}</span>
-              <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
-  
-            </div>
-  
-          </ng-template>
-  
-  
+        <!-- Navigation Buttons -->
+        <div *ngIf="showhomeheader" class="d-flex align-items-center nav-buttons">
+          <button mat-button class="nav-item" (click)="coreService.navigateToRoute('/login')">Home</button>
+          <button mat-button class="nav-item" (click)="coreService.navigateToRoute('/login')">TV Shows</button>
+          <button mat-button class="nav-item" (click)="coreService.navigateToRoute('/login')">Movies</button>
+          <button mat-button class="nav-item" (click)="coreService.navigateToRoute('/login')">New & Popular</button>
+          <button mat-button class="nav-item" (click)="coreService.navigateToRoute('/login')">My List</button>
         </div>
-      
       </div>
-    </div>
-  </nav>
+      <div class="d-flex align-items-center">
+        <button *ngIf="!isSearchVisible && showhomeheader" class="search-button me-3" (click)="toggleSearch()">
+          <mat-icon style="font-size: 26px">search</mat-icon>
+        </button>
+
+        <!-- Search Input (visible when isSearchVisible is true) -->
+        <div *ngIf="isSearchVisible && showhomeheader" class="search-box me-3">
+          <input #searchInput
+                 type="text"
+                 class="search-input"
+                 placeholder="Search"
+                 aria-label="Search"
+                 (blur)="toggleSearch()" />
+        </div>
+        <div *ngIf="showhomeheader" class="profile dropdown">
+          <!-- Image that triggers the dropdown -->
+          <img [src]="getSelectedProfileImage()"
+               class="dropdown-toggle small-profile-image"
+               id="dropdownMenuButton"
+               data-bs-toggle="dropdown"
+               aria-expanded="false"
+               data-bs-display="dynamic"
+               alt="Profile Image"
+               style="cursor: pointer;" />
+
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: black">
+            <!-- Wrap the *ngIf with ng-container -->
+            <ng-container *ngFor="let profile of coreService.profiles">
+              <!-- Only show profiles that are not selected -->
+              <li *ngIf="!profile.selectedprofile">
+                <a class="dropdown-item d-flex align-items-center" style="color:white"
+                   href="javascript:void(0);"
+                   (click)="coreService.selectProfile(profile.id)">
+                  <img [src]="profile.image"
+                       alt="{{ profile.name }}"
+                       class="me-2 profile-img border" />
+                  {{ profile.name }}
+                </a>
+              </li>
+            </ng-container>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" style="color:white" (click)="coreService.navigateToRoute('/browse')">
+                <span class="material-icons me-2">edit</span> Manage Profile
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#" style="color:white">
+                <span class="material-icons me-2">account_circle</span> Account
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" style="color:white" (click)="coreService.logout()">
+                <span class="material-icons me-2">logout</span> Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+
+
+        <!--Language Dropdown-->
+        <div *ngIf="showLanguageDropdown" class="me-3">
+          <button class="btn btn-secondary dropdown-toggle langbtn d-flex align-items-center"
+                  type="button"
+                  id="languageDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            <mat-icon class="me-2">translate</mat-icon>
+            <span>{{ coreService.languageMap[coreService.selectedLanguage] }}</span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+            <li><a class="dropdown-item" (click)="coreService.setLanguage('en')">English</a></li>
+            <li><a class="dropdown-item" (click)="coreService.setLanguage('es')">Spanish</a></li>
+          </ul>
+        </div>
+
+        <!--Sign In Button-->
+        <button *ngIf="showSignInButton" type="button" class="btn btn-light signupbtn font-w500"
+                (click)="coreService.navigateToRoute('/login')">
+          Sign In
+        </button>
+      </div>
+    </mat-toolbar>
+
+  </div>
+</mat-toolbar>
+
+

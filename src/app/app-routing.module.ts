@@ -11,15 +11,24 @@ import { BlogDetailsComponent } from './features/public/blog-details/blog-detail
 import { LoginComponent } from './features/auth/login/login.component';
 import { authGuard } from './features/auth/guard/auth.guard';
 import { SignupComponent } from './features/auth/signup/signup.component';
+import { BrowseComponent } from './features/public/browse/browse.component';
 
 const routes: Routes = [
   {
     path:'',
-    component:SignupComponent
+    component: LoginComponent
   },
   {
     path: 'login',
     component:LoginComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'browse',
+    component: BrowseComponent
   },
   {
     path:'blog/:url',

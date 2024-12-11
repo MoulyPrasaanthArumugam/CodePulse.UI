@@ -96,3 +96,13 @@ ModelState.AddModelError("file", "Unsupported file format"); //used for validati
 # BehaviourSubject
    Used to create observables to emit values to its subscribers
 Because BehaviorSubject always holds the latest value, it is often used in state management scenarios. For example, you can use it to store and update the state of a component or service, ensuring that all parts of your application have access to the most recent state3.
+
+
+#After Siva integration pull - follow below steps
+npm uninstall marked ngx-cookie-service ngx-markdown
+npm install ngx-cookie-service@17.0.0 ngx-markdown@17.0.0 marked@9.1.6
+npm install bootstrap
+ng add @angular/material
+npm uninstall prismjs
+
+

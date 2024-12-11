@@ -1,25 +1,31 @@
-<div class="container-fluid bg-dark text-white vh-100" 
-     style="background-image: url('https://miro.medium.com/v2/resize:fit:2000/1*hLrWUW2mKy-GTeujcXl0NA.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-   <div class="row h-100">
-      <div class="col-12 col-md-6 col-lg-4 mx-auto align-self-center bg-dark bg-opacity-75 p-4 rounded">
-         <h1 class="text-center">Sign Up</h1>
-         <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
-            <div class="mt-3">
-               <label for="name" class="form-label">Name:</label> 
-               <input type="text" id="name" class="form-control" required [(ngModel)]="modellist.UserName" name="name">
-            </div>
-            <div class="mt-3">
-               <label for="email" class="form-label">Email:</label>
-               <input type="email" id="email" class="form-control" required [(ngModel)]="modellist.Email" name="email">
-            </div> 
-            <div class="mt-3">
-               <label for="password" class="form-label">Password:</label>
-               <input type="password" id="password" class="form-control" required [(ngModel)]="modellist.Password" name="password">
-            </div>
-            <div class="mt-3">
-               <button type="submit" class="btn btn-primary w-100" [disabled]="!signUpForm.form.valid">Sign Up</button>
-            </div>
-         </form>
+<div class="signup-page">
+  <div class="signup-container">
+    <app-header [showLanguageDropdown]="true" [showSignInButton]="true"></app-header>
+
+    <!-- Main Content Section -->
+    <p class="h1 text-center">Unlimited Movies, TV shows and more</p>
+    <p class="d-block fs-5 infotag">Ready to watch? Create your account with your email</p>
+
+    <div class="row align-items-center">
+      <!-- Row ensures full-width responsive design -->
+      <!-- Email Input -->
+      <div class="col-12 col-md-8 mb-3 mb-md-0">
+        <!-- Input spans full width on small screens and 8/12 on medium screens -->
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingemail" placeholder="name@example.com" required />
+          <label for="floatingemail">Email address</label>
+        </div>
       </div>
-   </div>
+
+      <!-- Get Started Button -->
+      <div class="col-12 col-md-4 mt-3 mt-md-0">
+        <!-- Button: Full width on mobile, 4/12 width on tablet/desktop -->
+        <button type="button" class="btn btn-danger p-3 d-flex align-items-center signupbtn font-w500"
+                (click)="coreService.navigateToRoute('/login')">
+          Get started
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

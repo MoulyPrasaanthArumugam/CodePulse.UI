@@ -1,0 +1,25 @@
+<form [formGroup]="myform">
+  <h1 mat-dialog-title>{{inputData.title}}</h1>
+  <div mat-dialog-content role="dialog" aria-modal="true">
+    <div class="form-floating mb-3">
+      <input type="text" formControlName="name" class="form-control" id="floatingInput" name="name" placeholder="Name">
+      <label for="floatingInput">Name</label>
+    </div>
+    <h2> Choose Profile icon </h2>
+    <div class="profile-grid">
+      <div class="profile-icon"
+           *ngFor="let image of profileImages"
+           [class.selected]="image === selectedProfileIcon"
+           (click)="selectProfileIcon(image)">
+        <img [src]="image" alt="Profile Icon">
+      </div>
+    </div>
+
+    <!--<p *ngIf="selectedProfileIcon">Selected Icon: {{ selectedProfileIcon }}</p>-->
+  </div>
+
+  <div mat-dialog-action>
+    <button type="button" class="btn btn-primary me-2" (click)="Saveprofile()">Save</button>
+    <button type="button" class="btn btn-danger" (click)="closePopup()">Cancel</button>
+  </div>
+</form>

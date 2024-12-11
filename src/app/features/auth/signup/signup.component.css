@@ -1,0 +1,46 @@
+.signup-page {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../../../assets/signup_bg.jpg'); /* Path to your image */
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Avoid image repetition */
+}
+
+/* Login container with black background */
+.signup-container {
+  position: relative;
+  /* width: 50%;*/
+  padding: 40px;
+  /*background-color: rgb(48 42 42 / 36%);*/ /* Black background with transparency */
+  border-radius: 65px; /* Rounded corners */
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/ /* Optional shadow for depth */
+  color: white; /* White text for better readability */
+}
+
+/* Ensure input has transparent background */
+.form-control {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-color: #ccc; /* Adjust border color as needed */
+  color: white;
+  border-radius: 30px
+}
+
+.form-floating > input + label:after {
+  background: unset !important;
+  color: #dfdfdf !important;
+}
+
+.form-floating > input:focus + label,
+.form-floating > input:not(:placeholder-shown) + label {
+  color: #dfdfdf !important;
+}
+
+/* Optional: Adjust input focus styles */
+.form-floating > input:focus {
+  border-color: white;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}

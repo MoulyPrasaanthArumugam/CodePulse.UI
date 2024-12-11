@@ -1,27 +1,40 @@
-<div class="container">
-    <div class="my-5">
-      <div class="row align-items-strech">
-        <ng-container *ngIf="blogs$ | async as blogs">
-          <div class="col-12 col-md-4 mb-3" *ngFor="let blog of blogs">
-            <div class="card h-100">
-              <img [src]="blog.featuredImageUrl" class="card-img-top"
-              [alt]="blog.title">
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">
-                  {{blog.title}}
-                </h5>
-                <p class="card-text">
-                  {{blog.shortDescription}}
-                </p>
-                <span class="d-flex align-items-end" style="flex: 1">
-                <a [routerLink]="['/blog', blog.urlHandle]" class="btn btn-primary">
-                  Read More
-                </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </ng-container>
+<app-header [showhomeheader]="true"></app-header>
+
+<div style="background-color: rgb(0 0 0 / 88%); height: 100%; padding-bottom: 100px;">
+  <!-- Main Banner -->
+  <div id="carouselExampleInterval" class="main-banner" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let banner of banners; let i = index" [class.active]="i === 0" data-bs-interval="2000">
+        <img [src]="banner" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <div class="banner-text">
+      <h1>Welcome to Netflix</h1>
+      <button class="btn-danger btn">Play</button>
+    </div>
+  </div>
+
+  <!-- Movie/Series Sections -->
+  <div class="movie-section">
+    <h2>Trending Now</h2>
+    <div class="movie-list">
+      <div class="movie-item" *ngFor="let movie of trendingMovies">
+        <img [src]="movie.image" alt="{{ movie.title }}" class="movie-image" />
       </div>
     </div>
   </div>
+
+  <div class="movie-section">
+    <h2>Top Rated</h2>
+    <div class="movie-list">
+      <div class="movie-item" *ngFor="let movie of topRatedMovies">
+        <img [src]="movie.image" alt="{{ movie.title }}" class="movie-image" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Netflix</p>
+  </footer>
+</div>

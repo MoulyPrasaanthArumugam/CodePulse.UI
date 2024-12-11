@@ -1,0 +1,169 @@
+/* General Styles */
+.contentbrowse {
+  position: fixed;
+  top: 20%;
+}
+
+.who-watching-page {
+  height: -webkit-fill-available;
+  background-color: #141414;
+  color: #ffffff !important;
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align items closer to the top */
+  align-items: center;
+}
+
+  .who-watching-page h1 {
+    font-size: 2.5rem;
+  }
+
+  .who-watching-page .profiles {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 2rem; /* Reduce space below profiles */
+  }
+
+  .who-watching-page .profile-card {
+    width: 150px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+    position: relative; /* Needed to position the edit icon */
+  }
+
+    .who-watching-page .profile-card:hover {
+      transform: scale(1.1);
+    }
+
+    .who-watching-page .profile-card .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%; /* Circular profile images */
+      border: 2px solid #ffffff !important;
+      margin-bottom: 1.5rem; /* Space between image and name */
+    }
+
+    .who-watching-page .profile-card .profile-name {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #fff; /* Ensure text is visible */
+    }
+
+  .who-watching-page button {
+    color: #000;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1.5rem; /* Ensure consistent spacing above button */
+    margin-bottom: 0; /* Remove default margin at the bottom */
+    border-radius: unset;
+  }
+
+    .who-watching-page button mat-icon {
+      font-size: 1.5rem;
+    }
+
+/* Media Query for small screens (Mobile) */
+@media (max-width: 600px) {
+  .who-watching-page {
+    padding: 2rem;
+  }
+
+    .who-watching-page h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .who-watching-page .profiles {
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      justify-content: center; /* Center-align profiles for compact spacing */
+    }
+
+    .who-watching-page .profile-card {
+      width: 45%; /* Adjust for two columns */
+    }
+
+      .who-watching-page .profile-card .profile-image {
+        width: 100px;
+        height: 100px;
+      }
+
+    .who-watching-page button {
+      margin-top: 2rem; /* Add spacing between button and profiles */
+      padding: 0.4rem 0.8rem; /* Adjust button padding */
+    }
+}
+
+.btnborder {
+  border-radius: unset;
+}
+
+  .btnborder:hover {
+    border-width: 2px !important;
+    border-radius: unset;
+  }
+
+/* Edit Icon Styles */
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  display: none; /* Hide initially */
+}
+
+  .edit-icon mat-icon {
+    color: white;
+    font-size: 24px;
+  }
+
+/* When showEditIcons is true, the edit icons will be displayed */
+.profile-card.show-edit .edit-icon {
+  display: block; /* Show when class is added */
+}
+
+.profile-card.editable {
+  border-color: rgba(255, 255, 255, 0.5); /* Highlight border when editable */
+}
+
+  .profile-card.editable:hover {
+    transform: scale(1.05); /* Slightly reduced scale when editing is enabled */
+  }
+
+
+
+.custom-dialog .mat-dialog-container {
+  background-color: white !important;
+}
+
+.custom-dialog .mat-dialog-content {
+  background-color: white !important;
+}
+
+@media (max-width: 760px) {
+  .who-watching-page {
+    height: auto;
+    background-color: #141414;
+    color: #ffffff;
+    text-align: center;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items closer to the top */
+    align-items: center;
+  }
+}

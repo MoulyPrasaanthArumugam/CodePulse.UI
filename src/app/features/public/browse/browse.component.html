@@ -1,0 +1,36 @@
+<div class="who-watching-page d-flex flex-column align-items-center">
+  <!-- Title -->
+  <h1 class="mb-5">Who's Watching?</h1>
+
+  <!-- Profile Cards -->
+  <div class="profiles d-flex flex-wrap justify-content-center mb-3">
+    <div *ngFor="let profile of coreService.profiles"
+         class="profile-card d-flex flex-column align-items-center position-relative"
+         [ngClass]="{ 'show-edit': showEditIcons }"
+         (click)="showEditIcons ? editProfile(profile) : coreService.selectProfile(profile.id)">
+      <!-- Edit Icon -->
+      <div *ngIf="showEditIcons" class="edit-icon" (click)="editProfile(profile)">
+        <mat-icon>edit</mat-icon>
+      </div>
+
+      <img [src]="profile.image" [alt]="profile.name" class="profile-image mb-4 profilecard" />
+      <p class="profile-name">{{ profile.name }}</p>
+    </div>
+  </div>
+
+  <!-- Add Profile Button -->
+  <button class="btn btn-light" (click)="openAddProfile()">
+    <mat-icon>add</mat-icon>Add Profile
+  </button>
+
+  <!-- Manage Profile Button -->
+  <button *ngIf="!showEditIcons" class="btn border btnborder" style="color: white" (click)="toggleManageProfile()">
+    Manage Profile
+  </button>
+  <button *ngIf="showEditIcons" class="btn border btnborder" style="color: white" (click)="toggleManageProfile()">
+    Done
+  </button>
+</div>
+
+
+

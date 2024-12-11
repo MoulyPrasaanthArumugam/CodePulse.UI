@@ -1,0 +1,126 @@
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  color: white;
+}
+
+/* Main Banner Styles */
+.main-banner {
+  position: relative;
+  /*width: 100%;*/ /* Full width of the viewport */
+  /*margin: 0;*/ /* Removes any default margins */
+  /*padding: 0;*/ /* Removes any default padding */
+  /*overflow: hidden;*/ /* Prevents overflow issues */
+}
+
+.carousel-inner img {
+  width: 100%; /* Ensures the image spans the full width */
+  height: 60vh; /* Keeps the height fixed */
+  object-fit: cover; /* Ensures the image scales without distortion */
+  object-position: center; /* Centers the image within its container */
+}
+
+/*.carousel-inner {
+  width: 100%;*/ /* Ensures inner carousel spans the full width */
+/*}
+
+.carousel-item {
+  width: 100%;*/ /* Ensures each carousel item spans the full width */
+/*}*/
+
+.banner-text {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  color: white;
+  text-align: left;
+  z-index: 10;
+}
+
+  .banner-text h1 {
+    font-size: 2.5rem; /* Slightly smaller font size */
+    margin-bottom: 10px;
+  }
+
+  .banner-text button {
+    font-size: 1rem; /* Reduced button font size */
+    padding: 10px 20px;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+  }
+
+    .banner-text button:hover {
+      background-color: darkred;
+    }
+
+/* Movie Section Styles */
+.movie-section {
+  padding: 20px 10px;
+}
+
+.movie-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.movie-item {
+  flex-shrink: 0;
+  width: 200px; /* Default size for desktop */
+}
+
+.movie-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  color: white;
+  background-color: black;
+  padding: 20px 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .banner-text h1 {
+    font-size: 2rem;
+  }
+
+  .banner-text button {
+    font-size: 1rem;
+  }
+
+  .movie-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .movie-item {
+    width: 150px; /* Smaller width for mobile screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .banner-text button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}

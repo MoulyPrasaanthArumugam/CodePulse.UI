@@ -1,0 +1,167 @@
+.langbtn {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 30px;
+  border: ridge;
+}
+
+
+
+/* Hide text inside the language button for mobile resolutions */
+@media (max-width: 768px) {
+  .langbtn mat-icon {
+    margin-right: 0; /* Remove the spacing when only the icon is displayed */
+  }
+
+  .langbtn span {
+    display: none; /* Hide the language text */
+  }
+
+  .infotag {
+    text-align: center;
+  }
+
+  .netflix-logo {
+    height: 90px;
+    width: 110px;
+  }
+
+  .signup-container {
+    padding: 20px;
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+}
+
+  .nav-buttons .nav-item {
+    color: white;
+    font-size: 1rem;
+    /*    font-weight: bold;*/
+    margin-right: 15px;
+    /*text-transform: uppercase;*/
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+    .nav-buttons .nav-item:hover {
+      border-bottom: 2px solid red;
+    }
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center; /* Center the icon vertically */
+  color: white;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-input {
+  background-color: #333;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 4px;
+  padding: 5px 10px;
+  width: 200px;
+  font-size: 0.9rem;
+}
+
+  .search-input::placeholder {
+    color: #999;
+  }
+
+
+
+.small-profile-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+  .small-profile-image:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.profile .dropdown-menu {
+  position: absolute;
+  will-change: transform;
+  top: 100%; /* Position below the trigger */
+  left: auto; /* Auto-adjust for better alignment */
+  right: 0; /* Align to the right */
+  transform: translateX(-10px); /* Slightly adjust if needed */
+  width: 200px; /* You can adjust this value as per your requirement */
+}
+
+
+/* On very small screens (e.g., phones), reduce the size of the profile image */
+@media (max-width: 480px) {
+  .small-profile-image {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .small-profile-image {
+    width: 35px;
+    height: 35px;
+  }
+
+  .dropdown-menu {
+    min-width: 150px; /* Adjust for smaller screens */
+  }
+
+  .dropdown-item {
+    font-size: 13px; /* Smaller font size for mobile */
+  }
+}
+
+/* Profile image inside dropdown */
+.profile-img {
+  width: 35px;
+  height: 40px;
+  object-fit: inherit;
+  margin-right: 10px !important;
+  border-color: black !important;
+}
+
+
+
+/* Optionally, you can add padding or margins to the dropdown items */
+.profile .dropdown-item {
+  padding: 8px 12px; /* Adjust padding for dropdown items */
+  font-size: 14px; /* Adjust font size if needed */
+}
+
+  /* Adjust the width of the profile image if needed */
+  .profile .dropdown-item img {
+    width: 30px; /* Adjust the image width */
+    height: 30px; /* Adjust the image height */
+    object-fit: cover; /* Ensure the image fits within the given dimensions */
+  }
+
+
+.fixed-header_scroll {
+  background-color: black !important; /* Solid black background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Shadow for better contrast */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  z-index: 1000;
+}
